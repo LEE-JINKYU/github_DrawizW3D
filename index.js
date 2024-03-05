@@ -30,6 +30,25 @@ app.get('/main', (req, res) => {
     //res.sendFile(__dirname + '/node_modules/');
 });
 
+app.get('/loadGlb', (req, res) => {
+  // GLB 파일 경로 설정
+  const filePath = path.join(__dirname, '../SMonkey.glb');
+
+  // 파일 읽기
+  fs.readFile(filePath, (err, data) => {
+      if (err) {
+          // 에러 처리
+          console.error('Error reading file:', err);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+
+      // 파일을 클라이언트에 전송
+      res.setHeader('Content-Type', 'model/gltf-binary'); // GLTF 파일 형식으로 설정
+      res.send(data);
+  });
+});
+
 // main.html 파일 제공
 // app.get('/main/:modelName', (req, res) => {
 //   const modelName = req.params.modelName; // URL에서 modelName 매개변수를 읽어옴
