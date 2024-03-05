@@ -1296,26 +1296,23 @@ class App {
 
         //console.log("FileImport");
         //this.FileNewScene();
-
-        fetch('/loadGlb')
-            .then(response => {
+        var files;
+        
+                    try {
+                // GLB 파일 요청
+                const response = await fetch('/loadGlb');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                return response.blob(); // 파일 데이터를 blob 형태로 받음
-            })
-            .then(blobData => {
-                // 받은 blob 데이터를 변수에 저장
-                const files = new Blob([blobData], { type: 'model/gltf-binary' });
-
-                // 저장된 파일 변수를 사용하여 원하는 작업 수행
-                console.log('GLB 파일을 변수에 저장했습니다.', files);
-
-                // 예를 들어, 저장된 파일 변수를 사용하여 GLTFLoader를 통해 모델을 로드하거나 렌더링할 수 있음
-            })
-            .catch(error => {
+        
+                // GLB 파일 데이터를 ArrayBuffer로 변환
+                 files = await response.arrayBuffer();
+        
+                // ArrayBuffer를 사용하여 모델 로드
+                
+            } catch (error) {
                 console.error('There has been a problem with your fetch operation:', error);
-            });
+            }
         //const files = event.target.files;
 
         //const file = event.target.files[0];
