@@ -31,6 +31,8 @@ app.get('/main', (req, res) => {
 });
 
 app.get('/loadGlb', (req, res) => {
+
+  console.log('glb 주소 연결')
   // GLB 파일 경로 설정
   const filePath = path.join(__dirname, '../SMonkey.glb');
 
