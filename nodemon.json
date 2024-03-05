@@ -1,0 +1,4 @@
+{
+    "ignore": ["*.app.js", "src/"],
+    "ext": "js,json"
+}

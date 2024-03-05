@@ -1,0 +1,1 @@
+select * from [Web3DTestDB].[dbo].[Web3DBlockDataTable] WHERE AM_BLOCK = @fileName

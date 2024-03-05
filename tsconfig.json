@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    //"rootDir": "src",
+  },
+  "include": [
+    "DrawizW3D_Client/**/*" 
+, "routes", "data/blocks", "config.js", "index.js", "data/utils.js"   ],
+  "exclude": [
+    "node_modules" 
+  ]
+ }

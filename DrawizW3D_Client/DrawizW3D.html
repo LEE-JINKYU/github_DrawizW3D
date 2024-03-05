@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GSE WEB3D Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- css 링크 -->
+    <link rel="stylesheet" href="./Resource/Css/DrawizW3D.css">
+
+    <!-- threejs 경로 설정 -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./build/three.module.js"
+            }
+        }
+        
+    </script>
+
+    <!-- app.js(코드구현) 링크 -->
+    <script type="module" src="DrawizW3D.js" defer>
+    <!--<script type="module" src="./CodeObfusion.js" defer>-->
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <div class="wrap">
+        <header id="header">
+
+            <div id="open-navigation">
+                <button id="new-button" class="toolbar-button">
+                    <span data-tooltip="새 페이지" flow="down"><img class="navigationIcon" src="./Resource/Image/BASE_Icon/new_new.png"></span>
+                </button>
+
+                <!-- <input id="file-input" type="file" style="display: none;" accept=".glb" multiple > 
+                <button id="file-button" class="toolbar-button">
+                    <span data-tooltip="파일 오픈"><img class="navigationIcon" src="./Resource/Image/BASE_Icon/open_new.png"></span>
+                </button> -->
+
+                <button id="load-gltf" class="toolbar-button">
+                    <span data-tooltip="MTP 모델" flow="down"><img class="navigationIcon" src="./Resource/Image/BASE_Icon/open_new.png"></span>
+                </button>
+            </div>
+
+            <div id="toolbar-navigation">
+                <!-- <button id="server-connect" class="toolbar-button">
+                    <span data-tooltip="서버 연결" flow="down"><img class="navigationIcon"
+                            src="./image/database_new.png"></span>
+                </button> -->
+                <button id="autoDimension-button" class="toolbar-button">
+                    <span data-tooltip="오토 디멘젼" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/autoDimension_new.png"></span>
+                </button>
+
+                <button id="dimension-button" class="toolbar-button">
+                    <span data-tooltip="거리 측정" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/dimension_new.png"></span>
+                </button>
+
+                <button id="note-button" class="toolbar-button">
+                    <span data-tooltip="노트 생성" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/note_new.png"></span>
+                </button>
+
+                <button id="color-button" class="toolbar-button">
+                    <span data-tooltip="색상 변경" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/color_new.png"></span>
+                </button>
+
+                <button id="shadow-button" class="toolbar-button">
+                    <span data-tooltip="음영 선택" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/shadow_new.png"></span>
+                </button>
+
+                <button id="attribute-button" class="toolbar-button">
+                    <span data-tooltip="속성 정보" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/attribute_new.png"></span>
+                </button>
+                <button id="partList-button" class="toolbar-button">
+                    <span data-tooltip="파트리스트 정보" flow="down"><img class="navigationIcon"
+                            src="./Resource/Image/BASE_Icon/partlist_new.png"></span>
+                </button>
+            </div>
+
+
+
+            <div class="logo_div">
+
+            </div>
+
+
+        </header>
+
+
+        <div class="container">
+            <div id="loadingOverlay"></div>
+            <div id="loadingIndicator"></div>
+            <div id="dimensionSelectTextBox"></div>
+            <div id='aside' class="aside">
+                <div id="search" class="search">
+                </div>
+                <div id="sidebar" class="treeView"></div>
+                <div id="customPanel">
+                    <!-- <div id="visible" class="customPanelList">숨기기</div>
+                    <div id="invisible" class="customPanelList">보이기</div> -->
+                </div>
+            </div>
+            <div class="resizer" id="resizer"></div>
+            <div id="viewer-container" class="viewer">
+                <div id="attribute-Zone"></div>
+                <div id="partlist-Zone"></div>
+                <div id="color-picker">
+                    <div id="color-blue" class="color-list"></div>
+                    <div id="color-red" class="color-list"></div>
+                    <div id="color-yellow" class="color-list"></div>
+                    <div id="color-green" class="color-list"></div>
+                    <div id="color-white" class="color-list"></div>
+                    <div id="color-reset" class="color-list">
+                        <img id="color-reset" class="colorReset-button" src="./Resource/Image/BASE_Icon/colorReset2.png"></div>
+                </div>
+                <div id="dimensionAxesSelectPanel" class="AxesSelectPanel">
+                    <!--<img id="AxesSelectPanelImage" src="./image/BASE_Icon/colorReset2.png">-->
+                    <!-- <button id="btnPosX" class="btnDimensionAxes">+X</button>
+                    <button id="btnNegX" class="btnDimensionAxes">-X</button>
+                    <button id="btnPosY" class="btnDimensionAxes">+Y</button>
+                    <button id="btnNegY" class="btnDimensionAxes">-Y</button>
+                    <button id="btnPosZ" class="btnDimensionAxes">+Z</button>
+                    <button id="btnNegZ" class="btnDimensionAxes">-Z</button> -->
+
+                    <button id="btnDX" class="btnDimensionAxes">dx</button>
+                    <button id="btnDY" class="btnDimensionAxes">dy</button>
+                    <button id="btnDZ" class="btnDimensionAxes">dz</button>
+
+                </div>
+                <div id=""></div>
+                <div class="Panel" id="info" style="position: absolute; left: 10px; bottom: 10px; font-size: 12px; color: rgb(255, 255, 255); ">
+
+                    <span id="FPS" class="Text" style="cursor: default; display: inline-block;">0</span> 
+                    <span style=" margin-left: 5px;">/</span>
+                    <span id="Frametime" class="Text" style="cursor: default; display: inline-block; margin-left: 5px;">0</span>
+                    <br class="Break">
+
+                    <span class="Text" style="cursor: default; display: inline-block; text-transform: lowercase;">Objects</span>
+                    <span id="Objects" class="Text" style="cursor: default; display: inline-block; margin-left: 6px;">0</span>
+                    <br class="Break">
+                    <span class="Text" style="cursor: default; display: inline-block; text-transform: lowercase;">Vertices</span>
+                    <span id="Vertices" class="Text" style="cursor: default; display: inline-block; margin-left: 6px;">0</span><br
+                        class="Break">
+                    <span class="Text" style="cursor: default; display: inline-block; text-transform: lowercase;">Triangles</span>
+                    <span id="Triangles" class="Text" style="cursor: default; display: inline-block; margin-left: 6px;">0</span>
+                    <br class="Break">
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
